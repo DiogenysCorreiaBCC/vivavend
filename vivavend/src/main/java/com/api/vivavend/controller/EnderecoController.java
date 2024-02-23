@@ -47,25 +47,26 @@ public class EnderecoController {
     public ResponseEntity<Object> getUmaendereco(@PathVariable(value = "id") UUID id){
         Optional<Endereco> enderecoOptional = fachada.findEnderecoById(id);
         if (!enderecoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("endereco não encontrada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco não encontrado!");
         }
         return ResponseEntity.status(HttpStatus.OK).body(enderecoOptional.get());
     }
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteendereco(@PathVariable(value = "id") UUID id){
         Optional<Endereco> enderecoOptional = fachada.findEnderecoById(id);
         if (!enderecoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("endereco não encontrada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco não encontrado!");
         }
         fachada.deleteEndereco(enderecoOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body("endereco removida com sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body("Endereco removidO com sucesso!");
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateendereco(@PathVariable(value = "id") UUID id, @RequestBody @Valid EnderecoDTO enderecoDTO){
+    public ResponseEntity<Object> updateEndereco(@PathVariable(value = "id") UUID id, @RequestBody @Valid EnderecoDTO enderecoDTO){
         Optional<Endereco> enderecoOptional = fachada.findEnderecoById(id);
         if (!enderecoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("endereco não encontrada");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco não encontrado!");
         }
         var endereco = new Endereco();
         BeanUtils.copyProperties(enderecoDTO, endereco);
@@ -74,3 +75,27 @@ public class EnderecoController {
         return ResponseEntity.status(HttpStatus.OK).body(fachada.saveEndereco(endereco));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,9 +7,12 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.vivavend.model.Credenciais;
 import com.api.vivavend.model.Empresa;
 import com.api.vivavend.model.Endereco;
 import com.api.vivavend.model.Produto;
+import com.api.vivavend.services.AutenticacaoService;
+import com.api.vivavend.services.CredenciaisService;
 import com.api.vivavend.services.EmpresaService;
 import com.api.vivavend.services.EnderecoService;
 import com.api.vivavend.services.ProdutoService;
@@ -62,7 +65,7 @@ public class Fachada {
         empresaService.deleteEmpresa(empresa);
     }
     
-	//Endereco---------------------------------------------------------------------------------------------------------------------------------------
+	//Endereço---------------------------------------------------------------------------------------------------------------------------------------
     @Autowired
     private EnderecoService enderecoService;
     
@@ -80,6 +83,35 @@ public class Fachada {
 
     public void deleteEndereco(Endereco endereco) {
         enderecoService.deleteEndereco(endereco);
+    }
+    
+	//Credenciais---------------------------------------------------------------------------------------------------------------------------------------
+    @Autowired
+    private CredenciaisService credenciaisService;
+    
+    public Credenciais saveCredenciais(Credenciais credenciais) {
+    	return credenciaisService.saveCredenciais(credenciais);
+    }
+    
+    public void deleteCredenciais(Credenciais credenciais) {
+    	credenciaisService.deleteCredenciais(credenciais);
+    }
+    
+    public Optional<Credenciais> findCredencialByNomeDeUsuario(String nomeDeUsuario){
+    	return credenciaisService.findByNomeDeUsuario(nomeDeUsuario);
+    }
+    
+    public Optional<Credenciais> findCredenciaisById(UUID id){
+    	return credenciaisService.findById(id);
+    }
+
+    
+	//Autenticação---------------------------------------------------------------------------------------------------------------------------------------
+    @Autowired
+    private AutenticacaoService autenticacaoService;
+    
+    public boolean autenticar(String nomeDeUsuario, String senha) {
+    	return autenticacaoService.autenticar(nomeDeUsuario, senha);
     }
 }
 

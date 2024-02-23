@@ -14,9 +14,6 @@ import jakarta.persistence.OneToOne;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Endereco implements Serializable{
-	/**
-	 * 
-	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;

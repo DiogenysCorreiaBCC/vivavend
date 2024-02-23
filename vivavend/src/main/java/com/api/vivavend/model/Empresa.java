@@ -23,6 +23,9 @@ public class Empresa implements Serializable {
 	private int idEmpresa;
 	private String nome;
 	private String email;
+	@OneToOne
+	@JoinColumn(name = "credenciais_id", referencedColumnName = "id")
+	private Credenciais credenciais;
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private List<Produto> produtos;
     @OneToOne(cascade = CascadeType.ALL)
@@ -36,24 +39,28 @@ public class Empresa implements Serializable {
 	public void setIdEmpresa(int idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public Endereco getEndereco() {
 		return endereco;
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public UUID getId() {
 		return id;
 	}
@@ -61,13 +68,35 @@ public class Empresa implements Serializable {
 	public void setId(UUID id) {
 		this.id = id;
 	}
+	
 	public static long getSeriaversionuid() {
 		return serialVersionUID;
 	}
+	
 	public List<Produto> getProduto() {
 		return produtos;
 	}
 	public void setProduto(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+	
+	public Credenciais getCredenciais() {
+		return credenciais;
+	}
+	public void setCredenciais(Credenciais credenciais) {
+		this.credenciais = credenciais;
+	}
+	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}	
+	
+	
 }

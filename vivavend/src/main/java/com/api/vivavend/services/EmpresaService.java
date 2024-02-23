@@ -14,7 +14,6 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class EmpresaService implements EmpresaServiceInterface{
-
     @Autowired
     private EmpresaRepository empresaRepository;
 
