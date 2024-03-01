@@ -12,6 +12,11 @@ import com.api.vivavend.repository.EmpresaRepository;
 
 import jakarta.transaction.Transactional;
 
+/**
+ * Serviço responsável por operações relacionadas a empresas.
+ * @author Ismael
+ */
+
 @Service
 public class EmpresaService implements EmpresaServiceInterface{
     @Autowired

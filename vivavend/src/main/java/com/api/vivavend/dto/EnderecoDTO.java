@@ -2,6 +2,11 @@ package com.api.vivavend.dto;
 
 import com.api.vivavend.model.Empresa;
 
+/**
+ * DTO (Data Transfer Object) para representar um Endereco.
+ * @author Ismael
+ */
+
 public class EnderecoDTO {
 	private String logradouro;
 	private String bairro;

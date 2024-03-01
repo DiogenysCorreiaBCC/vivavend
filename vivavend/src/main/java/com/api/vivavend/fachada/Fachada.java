@@ -7,15 +7,25 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.vivavend.model.Avaliacao;
 import com.api.vivavend.model.Credenciais;
 import com.api.vivavend.model.Empresa;
 import com.api.vivavend.model.Endereco;
 import com.api.vivavend.model.Produto;
+import com.api.vivavend.model.Venda;
 import com.api.vivavend.services.AutenticacaoService;
+import com.api.vivavend.services.AvaliacaoService;
 import com.api.vivavend.services.CredenciaisService;
 import com.api.vivavend.services.EmpresaService;
 import com.api.vivavend.services.EnderecoService;
 import com.api.vivavend.services.ProdutoService;
+import com.api.vivavend.services.VendaService;
+
+
+/**
+ * Fachada que encapsula e gerencia o acesso aos serviços relacionados às entidades do sistema.
+ * @author Ismael
+ */
 
 
 @Service
@@ -23,25 +33,20 @@ public class Fachada {
 	//Produto---------------------------------------------------------------------------------------------------------------------------------------
 	@Autowired
 	private ProdutoService produtoService;
-	/*try {
-		return produtoService.saveProduto(produto);
-	}catch(IllegalArgumentException e) {
-		throw new ProdutoNaoEncontradoException("Erro ao Salvar!" + e.getMessage());
-	}*/
 	
-    public Produto saveProduto(Produto produto) {
+    public Produto salvarProduto(Produto produto) {
     	return produtoService.saveProduto(produto);
     }
     
-    public List<Produto> getAllProduto() {
+    public List<Produto> retornarTodosProduto() {
     	return produtoService.getAllProduto();
     }
     
-    public Optional<Produto> findProdutoById(UUID id) {
+    public Optional<Produto> buscarProdutoPorId(UUID id) {
     	return produtoService.findProdutoById(id);
     }
     
-    public void deleteProduto(Produto Produto) {
+    public void deletarProduto(Produto Produto) {
     	 produtoService.deleteProduto(Produto);
     }
     
@@ -49,11 +54,11 @@ public class Fachada {
     @Autowired
     private EmpresaService empresaService;
     
-    public Empresa saveEmpresa(Empresa empresa){	
+    public Empresa salvarEmpresa(Empresa empresa){	
         return empresaService.saveEmpresa(empresa);
     }
     
-    public List<Empresa> getAllEmpresa() {
+    public List<Empresa> retornarTodasEmpresa() {
         return empresaService.getAllEmpresa();
     }
 
@@ -61,7 +66,7 @@ public class Fachada {
         return empresaService.findEmpresaById(id);
     }
 
-    public void deleteEmpresa(Empresa empresa) {
+    public void deletarEmpresa(Empresa empresa) {
         empresaService.deleteEmpresa(empresa);
     }
     
@@ -69,19 +74,19 @@ public class Fachada {
     @Autowired
     private EnderecoService enderecoService;
     
-    public Endereco saveEndereco(Endereco endereco){
+    public Endereco salvarEndereco(Endereco endereco){
         return enderecoService.saveEndereco(endereco);
     }
     
-    public List<Endereco> getAllEndereco() {
+    public List<Endereco> retornarTodosEndereco() {
         return enderecoService.getAllEndereco();
     }
 
-    public Optional<Endereco> findEnderecoById(UUID id) {
+    public Optional<Endereco> buscarEnderecoPorId(UUID id) {
         return enderecoService.findEnderecoById(id);
     }
 
-    public void deleteEndereco(Endereco endereco) {
+    public void deletarEndereco(Endereco endereco) {
         enderecoService.deleteEndereco(endereco);
     }
     
@@ -89,29 +94,64 @@ public class Fachada {
     @Autowired
     private CredenciaisService credenciaisService;
     
-    public Credenciais saveCredenciais(Credenciais credenciais) {
+    public Credenciais salvarCredenciais(Credenciais credenciais) {
     	return credenciaisService.saveCredenciais(credenciais);
     }
     
-    public void deleteCredenciais(Credenciais credenciais) {
+    public void deletarCredenciais(Credenciais credenciais) {
     	credenciaisService.deleteCredenciais(credenciais);
     }
     
-    public Optional<Credenciais> findCredencialByNomeDeUsuario(String nomeDeUsuario){
+    public Optional<Credenciais> buscarPorNomeDeUsuario(String nomeDeUsuario){
     	return credenciaisService.findByNomeDeUsuario(nomeDeUsuario);
     }
     
-    public Optional<Credenciais> findCredenciaisById(UUID id){
+    public Optional<Credenciais> buscarCredenciaisPorId(UUID id){
     	return credenciaisService.findById(id);
     }
 
-    
 	//Autenticação---------------------------------------------------------------------------------------------------------------------------------------
     @Autowired
     private AutenticacaoService autenticacaoService;
     
     public boolean autenticar(String nomeDeUsuario, String senha) {
     	return autenticacaoService.autenticar(nomeDeUsuario, senha);
+    }
+    
+	//Avaliação---------------------------------------------------------------------------------------------------------------------------------------
+    @Autowired
+    private AvaliacaoService avaliacaoService;
+    
+    public Avaliacao salvarAvaliacao(Avaliacao avaliacao) {
+    	return avaliacaoService.salvarAvaliacao(avaliacao);
+    }
+    
+    public void deletarAvaliacao(Avaliacao avaliacao) {
+    	avaliacaoService.deletarAvaliacao(avaliacao);
+    }
+    
+    public Optional<Avaliacao> buscarAvaliacaoPorId(UUID id) {
+    	return avaliacaoService.buscarAvaliacaoPorId(id);
+    }
+    
+	//Venda---------------------------------------------------------------------------------------------------------------------------------------
+    @Autowired
+    private VendaService vendaService;
+    
+    public Venda salvarVenda(Venda venda) {
+    	return vendaService.saveVenda(venda);
+    }
+    
+    public List<Venda> retornarTodasAsVendas() {
+        return vendaService.getAllVenda();
+    }
+    
+    public void deletarVenda(Venda venda) {
+    	vendaService.deleteVenda(venda);
+    }
+    
+    public Optional<Venda> buscarVendaPorId(UUID id) {
+    	return vendaService.findVendaById(id);
     }
 }
 

@@ -1,5 +1,10 @@
 package com.api.vivavend.dto;
 
+/**
+ * DTO (Data Transfer Object) para representar credenciais de usuário.
+ * @author Ismael
+ */
+
 public class CredenciaisDTO {
 	private String nomeDeUsuário;
 	private String senha;

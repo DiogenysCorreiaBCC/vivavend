@@ -8,6 +8,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * Representa as credenciais de um usuário no sistema.
+ * Esta classe é uma entidade JPA mapeada para a tabela de credenciais no banco de dados.
+ * @author Ismael
+ */
+
 @Entity
 public class Credenciais implements Serializable{
 	public static final long serialVersionUID = 1L;

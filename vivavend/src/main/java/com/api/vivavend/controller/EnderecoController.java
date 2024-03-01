@@ -24,6 +24,14 @@ import com.api.vivavend.model.Endereco;
 
 import jakarta.validation.Valid;
 
+/**
+ * Controlador responsável por lidar com operações relacionadas a endereços.
+ * 
+ * Todas as operações neste controlador estão mapeadas para o endpoint "/endereco".
+ * Ressalta-se que uma empresa tem um endereço e um endereço tem uma empresa.
+ * @author Ismael
+ */
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/endereco")
@@ -31,40 +39,70 @@ public class EnderecoController {
     @Autowired
     private Fachada fachada;
 
+    /**
+     * Salva um novo endereço com base nos dados fornecidos.
+     * 
+     * @param enderecoDTO O objeto EnderecoDTO contendo os dados do endereço a ser criado
+     * @return ResponseEntity contendo o status da operação e o endereço criado
+     */
     @PostMapping
-    public ResponseEntity<Object> saveendereco(@RequestBody @Valid EnderecoDTO enderecoDTO) {
+    public ResponseEntity<Object> salvarEndereco(@RequestBody @Valid EnderecoDTO enderecoDTO) {
         var endereco = new Endereco();
         BeanUtils.copyProperties(enderecoDTO, endereco);
-        return ResponseEntity.status(HttpStatus.CREATED).body(fachada.saveEndereco(endereco));
+        return ResponseEntity.status(HttpStatus.CREATED).body(fachada.salvarEndereco(endereco));
     }
 
+    /**
+     * Retorna todos os endereços cadastrados no sistema.
+     * 
+     * @return ResponseEntity contendo o status da operação e a lista de todos os endereços
+     */
     @GetMapping
-    public ResponseEntity<List<Endereco>> getTodasenderecos(){
-        return ResponseEntity.status(HttpStatus.OK).body(fachada.getAllEndereco());
+    public ResponseEntity<List<Endereco>> exibirTodosEnderecos(){
+        return ResponseEntity.status(HttpStatus.OK).body(fachada.retornarTodosEndereco());
     }
 
+    /**
+     * Retorna um endereço específico com base no ID fornecido.
+     * 
+     * @param id O ID do endereço a ser recuperado
+     * @return ResponseEntity contendo o status da operação e o endereço encontrado, se existir
+     */
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getUmaendereco(@PathVariable(value = "id") UUID id){
-        Optional<Endereco> enderecoOptional = fachada.findEnderecoById(id);
+    public ResponseEntity<Object> exibirUmEndereco(@PathVariable(value = "id") UUID id){
+        Optional<Endereco> enderecoOptional = fachada.buscarEnderecoPorId(id);
         if (!enderecoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco não encontrado!");
         }
         return ResponseEntity.status(HttpStatus.OK).body(enderecoOptional.get());
     }
     
+    /**
+     * Exclui um endereço com base no ID fornecido.
+     * 
+     * @param id O ID do endereço a ser excluído
+     * @return ResponseEntity contendo o status da operação
+     */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteendereco(@PathVariable(value = "id") UUID id){
-        Optional<Endereco> enderecoOptional = fachada.findEnderecoById(id);
+    public ResponseEntity<Object> deletarEndereco(@PathVariable(value = "id") UUID id){
+        Optional<Endereco> enderecoOptional = fachada.buscarEnderecoPorId(id);
         if (!enderecoOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco não encontrado!");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereço não encontrado!");
         }
-        fachada.deleteEndereco(enderecoOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Endereco removidO com sucesso!");
+        fachada.deletarEndereco(enderecoOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Endereço removido com sucesso!");
     }
 
+    /**
+     * Atualiza os dados de um endereço com base no ID fornecido.
+     * 
+     * @param id O ID do endereço a ser atualizado
+     * @param enderecoDTO O objeto EnderecoDTO contendo os novos dados do endereço
+     * @return ResponseEntity contendo o status da operação e o endereço atualizado
+     */
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateEndereco(@PathVariable(value = "id") UUID id, @RequestBody @Valid EnderecoDTO enderecoDTO){
-        Optional<Endereco> enderecoOptional = fachada.findEnderecoById(id);
+    public ResponseEntity<Object> atualizarEndereco(@PathVariable(value = "id") UUID id, @RequestBody @Valid EnderecoDTO enderecoDTO){
+        Optional<Endereco> enderecoOptional = fachada.buscarEnderecoPorId(id);
         if (!enderecoOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco não encontrado!");
         }
@@ -72,7 +110,7 @@ public class EnderecoController {
         BeanUtils.copyProperties(enderecoDTO, endereco);
         endereco.setId(enderecoOptional.get().getId());
         //endereco.setRegistrationDate(enderecoOptional.get().getRegistrationDate());
-        return ResponseEntity.status(HttpStatus.OK).body(fachada.saveEndereco(endereco));
+        return ResponseEntity.status(HttpStatus.OK).body(fachada.salvarEndereco(endereco));
     }
 }
 

@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.api.vivavend.model.Produto;
 
+/**
+ * DTO (Data Transfer Object) para representar uma Empresa.
+ * @author Ismael
+ */
+
 public class EmpresaDTO {
 	private int idEmpresa;
 	private String nome;

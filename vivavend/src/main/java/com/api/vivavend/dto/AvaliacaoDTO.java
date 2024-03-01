@@ -1,5 +1,10 @@
 package com.api.vivavend.dto;
 
+/**
+ * DTO (Data Transfer Object) para representar uma avaliação.
+ * @author Ismael
+ */
+
 public class AvaliacaoDTO {
 	private String comentario;
 	private String nota;

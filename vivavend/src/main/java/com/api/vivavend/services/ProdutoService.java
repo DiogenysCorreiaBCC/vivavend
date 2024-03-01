@@ -12,6 +12,11 @@ import com.api.vivavend.repository.ProdutoRepository;
 
 import jakarta.transaction.Transactional;
 
+/**
+ * Serviço responsável por operações relacionadas a Produto.
+ * @author Ismael
+ */
+
 @Service
 public class ProdutoService implements ProdutoServiceInterface{
 
@@ -31,7 +36,7 @@ public class ProdutoService implements ProdutoServiceInterface{
 
     @Override
     public Optional<Produto> findProdutoById(UUID id){
-        return produtoRepository.findById(id);
+    	return produtoRepository.findById(id);
     }
 
     @Override

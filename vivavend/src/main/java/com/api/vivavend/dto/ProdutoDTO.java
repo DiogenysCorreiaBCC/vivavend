@@ -1,5 +1,10 @@
 package com.api.vivavend.dto;
 
+/**
+ * DTO (Data Transfer Object) para representar um Produto.
+ * @author Ismael
+ */
+
 public class ProdutoDTO {
 	private String idProduto;
 	private String nome;

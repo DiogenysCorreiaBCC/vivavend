@@ -14,6 +14,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 
+/**
+ * Representa uma Empresa no sistema.
+ * Esta classe é uma entidade JPA mapeada para a tabela de avaliações no banco de dados.
+ * Pode ser estendida por classes específicas de tipos de avaliação.
+ * @author Ismael
+ */
+
 @Entity
 public class Empresa implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -1,6 +1,5 @@
 package com.api.vivavend.model;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -11,7 +10,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 
 /**
- * Representa uma avaliação no sistema.
+ * Representa uma Venda no sistema.
  * Esta classe é uma entidade JPA mapeada para a tabela de avaliações no banco de dados.
  * Pode ser estendida por classes específicas de tipos de avaliação.
  * @author Ismael
@@ -19,13 +18,13 @@ import jakarta.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Avaliacao implements Serializable{
+public class Venda {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	private static final long serialVersionUID = 1L;
-	private String comentario;
-	private String nota;
+	private Produto produto;
+	private Avaliacao avaliacao;
 	
 	
 	public UUID getId() {
@@ -35,20 +34,19 @@ public class Avaliacao implements Serializable{
 		this.id = id;
 	}
 	
-	public String getComentario() {
-		return comentario;
+	public Produto getProduto() {
+		return produto;
 	}
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
-	}
-	
-	public String getNota() {
-		return nota;
-	}
-	public void setNota(String nota) {
-		this.nota = nota;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 	
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
+	}
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

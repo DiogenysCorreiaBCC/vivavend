@@ -11,6 +11,13 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToOne;
 
+/**
+ * Representa um Endereço no sistema.
+ * Esta classe é uma entidade JPA mapeada para a tabela de avaliações no banco de dados.
+ * Pode ser estendida por classes específicas de tipos de avaliação.
+ * @author Ismael
+ */
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Endereco implements Serializable{

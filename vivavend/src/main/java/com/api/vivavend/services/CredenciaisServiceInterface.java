@@ -5,6 +5,12 @@ import java.util.UUID;
 
 import com.api.vivavend.model.Credenciais;
 
+/**
+ * 
+ * 
+ * @author Ismael
+ */
+
 public interface CredenciaisServiceInterface {
 	Credenciais saveCredenciais(Credenciais credenciais);
 	void deleteCredenciais(Credenciais credenciais);

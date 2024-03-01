@@ -6,6 +6,12 @@ import java.util.UUID;
 
 import com.api.vivavend.model.Produto;
 
+/**
+ * 
+ * 
+ * @author Ismael
+ */
+
 public interface ProdutoServiceInterface {
     public Produto saveProduto(Produto produto);
     public List<Produto> getAllProduto();

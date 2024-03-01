@@ -11,6 +11,11 @@ import com.api.vivavend.repository.CredenciaisRepository;
 
 import jakarta.transaction.Transactional;
 
+/**
+ * Serviço responsável por operações relacionadas a credenciais.
+ * @author Ismael
+ */
+
 @Service
 public class CredenciaisService implements CredenciaisServiceInterface{
 	@Autowired
@@ -28,11 +33,23 @@ public class CredenciaisService implements CredenciaisServiceInterface{
 		credenciaisRepository.delete(credenciais);
 	}
 	
+    /**
+     * Busca as credenciais pelo nome de usuário.
+     * 
+     * @param nomeDeUsuario O nome de usuário das credenciais a serem buscadas.
+     * @return Um Optional contendo as credenciais, se encontradas.
+     */
 	@Override
     public Optional<Credenciais> findByNomeDeUsuario(String nomeDeUsuario){
     	return credenciaisRepository.findByNomeDeUsuario(nomeDeUsuario);
     }
 	
+    /**
+     * Busca as credenciais pelo ID.
+     * 
+     * @param id O ID das credenciais a serem buscadas.
+     * @return Um Optional contendo as credenciais, se encontradas.
+     */
 	@Override
     public Optional<Credenciais> findById(UUID id){
 		return credenciaisRepository.findById(id);

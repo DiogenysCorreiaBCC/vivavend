@@ -12,6 +12,11 @@ import com.api.vivavend.repository.EnderecoRepository;
 
 import jakarta.transaction.Transactional;
 
+/**
+ * Serviço responsável por operações relacionadas a Endereço.
+ * @author Ismael
+ */
+
 @Service
 public class EnderecoService implements EnderecoServiceInterface{
     @Autowired
